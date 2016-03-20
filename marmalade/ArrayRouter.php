@@ -14,7 +14,7 @@ class ArrayRouter extends Router {
      * Contains all of the routes for the application. 
      * This will be cached in the populate_router() method and loaded if possible.
      */
-    private $routes = array("|static|" => null);
+    protected $routes = array("|static|" => null);
 
 
     /**

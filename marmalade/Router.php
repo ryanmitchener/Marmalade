@@ -16,7 +16,7 @@ abstract class Router {
      * Contains all of the routes for the application. 
      * This will be cached in the populate_router() method and loaded if possible.
      */
-    private $routes = null;
+    protected $routes = null;
 
     /**
      * Retrieve the route based on the HTTP verb and URI
@@ -73,12 +73,12 @@ abstract class Router {
      * This function should not be overridden but can be if necessary.
      */
     public function populate_router() {
-        if (Cache::has("Marmalade\Router\Routes")) {
-            $this->routes = Cache::get("Marmalade\Router\Routes");
+        if (Cache::has(APP_NAME."_Marmalade\Router\Routes")) {
+            $this->routes = Cache::get(APP_NAME."_Marmalade\Router\Routes");
         } else {
             $this->build_route_map(Routes::load_routes());
             if (ENABLE_CACHE) {
-                Cache::set("Marmalade\Router\Routes", $this->routes);
+                Cache::set(APP_NAME."_Marmalade\Router\Routes", $this->routes);
             }
         }
     }
