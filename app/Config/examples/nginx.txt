@@ -1,0 +1,35 @@
+# Nginx Configuration
+#
+# Proxy every request through php-fpm and sets the script name to index.php
+# so that index.php is the only file ever executed
+#
+# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+
+server {
+    server_name     www.example.com;
+    listen          80;
+    root            /path/to/folder/;
+
+    # Send everything through /index.php
+    location / {
+        include         fastcgi.conf;
+        fastcgi_param   SCRIPT_FILENAME $document_root/index.php;
+        fastcgi_pass    unix:/run/php-fpm/php-fpm.sock;
+    }
+
+    # Allow assets to be accessed
+    location /assets {
+        # Try to find the requested file, if it doesn't exist, route it through index to give a 404
+        try_files $uri $uri/ /;
+
+        # Deny hidden files
+        location ~ \.htaccess|\.gitignore$ { deny all; return 404; }
+    }
+
+    # For additional protection you may deny access to all other main folders
+    # This should be handled from the rewrite
+    # location /marmalade { deny all; return 404; }
+    # location /app { deny all; return 404; }
+    # location /config { deny all; return 404; }
+    # location /docs { deny all; return 404; }
+}

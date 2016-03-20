@@ -1,0 +1,12 @@
+# Apache Configuration
+#
+# This is an .htaccess configuration that may go in the root directory of this project
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule . index.php [L]
+</IfModule>
