@@ -52,7 +52,6 @@ abstract class Response {
     private static function add_default_headers() {
         // Add default headers
         if (IS_API) {
-            Response::set_header("Accept-Control-Allow-Origin", "*");
             Response::set_header("Content-Type", "application/json"); // Add content type header
         }
         Response::set_header("X-Content-Type-Options", "nosniff"); // Prevent MIME-sniffing

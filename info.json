@@ -1,8 +1,8 @@
 {
   "name": "Marmalade",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Ryan Mitchener",
-  "date": "2016-03-19",
+  "date": "2016-06-28",
   "description": "A PHP micro-framework designed to simple, flexible, and very fast.",
   "license": "MIT License: https://opensource.org/licenses/MIT"
 }
