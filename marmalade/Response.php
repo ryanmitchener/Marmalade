@@ -141,7 +141,7 @@ abstract class Response {
 
         // Output all of the headers
         foreach (Response::$headers as $header => $value) {
-            header("{$header}: {$value};");
+            header("{$header}: {$value}");
         }
 
         // If the request is a HEAD request, return without sending output
